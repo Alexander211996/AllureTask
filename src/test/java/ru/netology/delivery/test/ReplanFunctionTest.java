@@ -2,6 +2,8 @@ package ru.netology.delivery.test;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.*;
 
@@ -14,6 +16,16 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.Keys.BACK_SPACE;
 
 public class ReplanFunctionTest {
+
+    @BeforeClass
+    static void setUpAll(){
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterClass
+    static void tearDownAll(){
+        SelenideLogger.removeListener("allure");
+    }
 
     @BeforeMethod
     public void openUrl() {
